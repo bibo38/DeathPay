@@ -1,0 +1,5 @@
+name: DeathPay
+main: me.bibo38.DeathPay.DeathPay
+version: 0.8
+author: bibo38
+depend: [Vault]
