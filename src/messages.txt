@@ -1,0 +1,1 @@
+death-debit: "%amount was debit from your account!"

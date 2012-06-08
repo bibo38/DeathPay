@@ -21,6 +21,7 @@ public class DeathPay extends JavaPlugin implements Listener
 	private PluginDescriptionFile pdFile;
 	private Economy eco;
 	private FileConfiguration cfg;
+	private CustomConfig msgs;
 	
 	private boolean setupEconomy() // Vault
 	{
@@ -65,6 +66,8 @@ public class DeathPay extends JavaPlugin implements Listener
 		cfg.options().copyDefaults(true);
 		this.saveConfig();
 		
+		msgs = new CustomConfig("messages.txt", this);
+		
 		log.info("DeathPay Version " + pdFile.getVersion() + " by bibo38 was activated!");
 	}
 	
@@ -80,7 +83,9 @@ public class DeathPay extends JavaPlugin implements Listener
 			if(betrag > 0)
 			{
 				eco.withdrawPlayer(((Player) evt.getEntity()).getName(), betrag);
-				((Player) evt.getEntity()).sendMessage(ChatColor.RED + "" + betrag + " was debit from your account!");
+				// ((Player) evt.getEntity()).sendMessage(ChatColor.RED + "" + String.format(msgs.getCfg().getString("death-debit"), betrag));
+				((Player) evt.getEntity()).sendMessage(ChatColor.RED + "" +
+						msgs.getCfg().getString("death-debit").replaceAll("%amount", String.valueOf(betrag)));
 			} else
 			{
 				log.warning("!!! Error in Configuration: amount is negative or 0 !!!");
