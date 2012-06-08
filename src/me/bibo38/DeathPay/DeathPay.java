@@ -67,6 +67,7 @@ public class DeathPay extends JavaPlugin implements Listener
 		this.saveConfig();
 		
 		msgs = new CustomConfig("messages.txt", this);
+		msgs.save();
 		
 		log.info("DeathPay Version " + pdFile.getVersion() + " by bibo38 was activated!");
 	}
@@ -78,6 +79,7 @@ public class DeathPay extends JavaPlugin implements Listener
 		if(evt.getEntity() instanceof Player)
 		{
 			this.reloadConfig();
+			msgs.reload();
 			double betrag = cfg.getDouble("amount"); // Betrag zum abziehen
 			
 			if(betrag > 0)
